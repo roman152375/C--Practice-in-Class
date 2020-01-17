@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chapter5StringMethods
+namespace Chapter6ProgramOddEven
 {
     public partial class Form1 : Form
     {
@@ -17,107 +17,31 @@ namespace Chapter5StringMethods
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-    
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            bool flag;
-            int index;
-            int start;
-            int howMany;
-            string temp;
-
-            lblLastIndexOf.Text = "";
-
-            txtLength.Text = txtInput.Text.Length.ToString();
-
-            txtToUpper.Text = txtInput.Text.ToUpper();
-
-            txtToLower.Text = txtInput.Text.ToLower();
-
-
-
-            index = txtInput.Text.IndexOf(txtSearchChar.Text, 0);
-
-            lblLastIndexOf.Text = "txtInput.Text.IndexOf(\"" + txtLastChar.Text + "\") = ";
-
-            txtSearchIndex.Text = index.ToString();
-
-
-
-            index = txtInput.Text.LastIndexOf(txtLastChar.Text);
-
-            lblLastIndexOf.Text = "txtInput.Text.LastIndexOf (\"" + txtLastChar.Text + "\") = ";
-
-            txtLastIndexOf.Text = index.ToString();
-
-
-
-            flag = int.TryParse(txtStartIndex.Text, out start);
-
-            if (flag == false)
-
-            {
-
-                MessageBox.Show("Improper numeric input. Re-enter.");
-
-                txtStartIndex.Focus();
-
-                return;
-
-            }
-
-            flag = int.TryParse(txtEndIndex.Text, out howMany);
-
-            if (flag == false)
-
-            {
-
-                MessageBox.Show("Improper numeric input. Re-enter.");
-
-                txtEndIndex.Focus();
-
-                return;
-
-            }
-
-
-
-            lblSubstring.Text = "txtIput.Text.Substring(" + start.ToString() + ", " + howMany.ToString() + ") =";
-
-            txtSubstringResult.Text = txtInput.Text.Substring(start, howMany);
-
-
-
-            temp = txtInput.Text;
-
-            index = temp.IndexOf(txtRemove.Text);
-
-            if (index > 0)
-
-            {
-
-                txtRemoveResult.Text = temp.Remove(index, txtRemove.Text.Length);
-
-            }
-
-            temp = txtInput.Text;
-
-            txtReplaceResult.Text = temp.Replace(txtReplaceChars.Text, txtReplaceWith.Text);
-
-
-
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+            bool flag;
+            int val;
+            string output = "Number is Even";
+            flag = int.TryParse(txtNumber.Text, out val);
+            if (flag == false)
+            {
+                MessageBox.Show("Not a number. Re-enter.");
+                txtNumber.Clear();
+                txtNumber.Focus();
+                return;
+            }
+            output = (val % 2 == 0) ? "Number is Even" : "Number is Odd";
+            lblOutput.Text = output;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
